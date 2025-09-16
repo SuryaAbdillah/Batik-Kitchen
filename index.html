@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Batik Kitchen - Authentic Indonesian Cuisine</title>
+    <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #fffaf0;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: #8b4513;
+        padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        color: #f5deb3;
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: #ff6b35;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-right: 25px;
+      }
+
+      nav ul li a {
+        color: #f5deb3;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        font-size: 16px;
+      }
+
+      nav ul li a:hover {
+        color: #ff6b35;
+      }
+
+      .order-btn {
+        background-color: #ff6b35;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 16px;
+      }
+
+      .order-btn:hover {
+        background-color: #e55a2b;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 70vh;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://placehold.co/1200x800/8b4513/ffffff?text=Indonesian+Cuisine");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        margin-bottom: 50px;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+        max-width: 700px;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Carousel Styles */
+      .carousel-section {
+        margin: 50px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #8b4513;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #ff6b35;
+      }
+
+      .carousel-container {
+        position: relative;
+        overflow: hidden;
+        padding: 20px 0;
+      }
+
+      .carousel {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 20px;
+      }
+
+      .menu-card {
+        min-width: 280px;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .menu-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .menu-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .menu-card h3 {
+        font-size: 1.3rem;
+        color: #8b4513;
+        margin-bottom: 10px;
+      }
+
+      .menu-card .price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #ff6b35;
+        margin-bottom: 10px;
+      }
+
+      .menu-card p {
+        color: #666;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(139, 69, 19, 0.8);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+      }
+
+      .carousel-btn:hover {
+        background-color: rgba(255, 107, 53, 0.8);
+      }
+
+      .prev-btn {
+        left: -20px;
+      }
+
+      .next-btn {
+        right: -20px;
+      }
+
+      .order-now-btn {
+        display: block;
+        margin: 40px auto;
+        padding: 15px 40px;
+        background-color: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+      }
+
+      .order-now-btn:hover {
+        background-color: #e55a2b;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      }
+
+      /* About Us Section */
+      .about-section {
+        background-color: #f5f5f5;
+        padding: 60px 0;
+        margin: 50px 0;
+        border-radius: 15px;
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-text h2 {
+        font-size: 2.2rem;
+        color: #8b4513;
+        margin-bottom: 20px;
+      }
+
+      .about-text p {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        color: #555;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #8b4513;
+        color: #f5deb3;
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .footer-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #f5deb3;
+      }
+
+      .footer-content p {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .footer-content .phone {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #ff6b35;
+        margin-top: 15px;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .modal-content {
+        background-color: white;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        animation: modalFadeIn 0.3s ease-out;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-header {
+        position: relative;
+        background-color: #8b4513;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .modal-body {
+        padding: 30px;
+      }
+
+      .modal-food-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .modal-food-name {
+        font-size: 1.8rem;
+        color: #8b4513;
+        margin-bottom: 10px;
+      }
+
+      .modal-food-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ff6b35;
+        margin-bottom: 20px;
+      }
+
+      .modal-food-description {
+        color: #555;
+        margin-bottom: 30px;
+        line-height: 1.7;
+      }
+
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .quantity-btn {
+        background-color: #8b4513;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .quantity-btn:hover {
+        background-color: #ff6b35;
+      }
+
+      .quantity-display {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 20px;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .add-to-cart-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #e55a2b;
+      }
+
+      /* Location & Payment Modal */
+      .location-payment-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .location-payment-content {
+        background-color: white;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 700px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .location-payment-header {
+        background-color: #8b4513;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+      .location-payment-body {
+        padding: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #8b4513;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #ff6b35;
+      }
+
+      .payment-methods {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .payment-method {
+        flex: 1;
+        min-width: 120px;
+        padding: 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .payment-method:hover {
+        border-color: #ff6b35;
+        transform: translateY(-3px);
+      }
+
+      .payment-method.selected {
+        border-color: #ff6b35;
+        background-color: #fff5f0;
+      }
+
+      .payment-method i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #8b4513;
+      }
+
+      .submit-order-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .submit-order-btn:hover {
+        background-color: #e55a2b;
+      }
+
+      /* Payment Confirmation Modal */
+      .payment-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .payment-content {
+        background-color: white;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .payment-header {
+        background-color: #8b4513;
+        color: white;
+        padding: 20px;
+        font-size: 1.5rem;
+      }
+
+      .payment-body {
+        padding: 40px 30px;
+      }
+
+      .payment-success {
+        color: #28a745;
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .payment-message {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #555;
+      }
+
+      .payment-details {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .payment-details p {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .close-payment-btn {
+        padding: 12px 30px;
+        background-color: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .close-payment-btn:hover {
+        background-color: #e55a2b;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+        }
+
+        .about-content {
+          flex-direction: column;
+        }
+
+        .carousel-btn {
+          display: none;
+        }
+
+        .menu-card {
+          min-width: 250px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav ul {
+          margin-bottom: 15px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <div class="logo">Batik <span>Kitchen</span></div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About Us</a></li>
+          </ul>
+        </nav>
+        <button class="order-btn" onclick="openLocationPaymentModal()">
+          Order
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <h1>Authentic Indonesian Cuisine</h1>
+      <p>
+        Savor the rich flavors and aromatic spices of Indonesia's culinary
+        heritage
+      </p>
+      <button class="order-now-btn" onclick="openFoodModal()">ORDER NOW</button>
+    </section>
+
+    <!-- Food Carousel Section -->
+    <section class="carousel-section" id="menu">
+      <div class="container">
+        <h2 class="section-title">Our Signature Dishes</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn prev-btn" onclick="prevSlide('food')">
+            &#10094;
+          </button>
+          <div class="carousel food-carousel">
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Nasi Goreng', 'Rp 45.000', 'Indonesian fried rice with sweet soy sauce, vegetables, and your choice of protein.', 'https://placehold.co/400x300/ff6b35/ffffff?text=Nasi+Goreng')"
+            >
+              <img
+                src="https://placehold.co/400x300/ff6b35/ffffff?text=Nasi+Goreng"
+                alt="Nasi Goreng"
+              />
+              <div class="card-content">
+                <h3>Nasi Goreng</h3>
+                <div class="price">Rp 45.000</div>
+                <p>
+                  Indonesian fried rice with sweet soy sauce, vegetables, and
+                  your choice of protein.
+                </p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Rendang', 'Rp 65.000', 'Slow-cooked beef in rich coconut milk and spices until tender and flavorful.', 'https://placehold.co/400x300/8b4513/ffffff?text=Rendang')"
+            >
+              <img
+                src="https://placehold.co/400x300/8b4513/ffffff?text=Rendang"
+                alt="Rendang"
+              />
+              <div class="card-content">
+                <h3>Rendang</h3>
+                <div class="price">Rp 65.000</div>
+                <p>
+                  Slow-cooked beef in rich coconut milk and spices until tender
+                  and flavorful.
+                </p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Satay', 'Rp 35.000', 'Grilled skewered meat served with peanut sauce and rice cakes.', 'https://placehold.co/400x300/ff9933/ffffff?text=Satay')"
+            >
+              <img
+                src="https://placehold.co/400x300/ff9933/ffffff?text=Satay"
+                alt="Satay"
+              />
+              <div class="card-content">
+                <h3>Satay</h3>
+                <div class="price">Rp 35.000</div>
+                <p>
+                  Grilled skewered meat served with peanut sauce and rice cakes.
+                </p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Gado-Gado', 'Rp 40.000', 'Traditional Indonesian salad with boiled vegetables, tofu, tempeh, and peanut sauce.', 'https://placehold.co/400x300/66cc66/ffffff?text=Gado-Gado')"
+            >
+              <img
+                src="https://placehold.co/400x300/66cc66/ffffff?text=Gado-Gado"
+                alt="Gado-Gado"
+              />
+              <div class="card-content">
+                <h3>Gado-Gado</h3>
+                <div class="price">Rp 40.000</div>
+                <p>
+                  Traditional Indonesian salad with boiled vegetables, tofu,
+                  tempeh, and peanut sauce.
+                </p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Soto Ayam', 'Rp 38.000', 'Traditional Indonesian chicken soup with turmeric, served with rice and condiments.', 'https://placehold.co/400x300/ffcc99/ffffff?text=Soto+Ayam')"
+            >
+              <img
+                src="https://placehold.co/400x300/ffcc99/ffffff?text=Soto+Ayam"
+                alt="Soto Ayam"
+              />
+              <div class="card-content">
+                <h3>Soto Ayam</h3>
+                <div class="price">Rp 38.000</div>
+                <p>
+                  Traditional Indonesian chicken soup with turmeric, served with
+                  rice and condiments.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn next-btn" onclick="nextSlide('food')">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Drink Carousel Section -->
+    <section class="carousel-section">
+      <div class="container">
+        <h2 class="section-title">Refreshing Beverages</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn prev-btn" onclick="prevSlide('drink')">
+            &#10094;
+          </button>
+          <div class="carousel drink-carousel">
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Es Teh Manis', 'Rp 15.000', 'Sweet iced tea, a refreshing Indonesian favorite.', 'https://placehold.co/400x300/ccffcc/ffffff?text=Es+Teh+Manis')"
+            >
+              <img
+                src="https://placehold.co/400x300/ccffcc/ffffff?text=Es+Teh+Manis"
+                alt="Es Teh Manis"
+              />
+              <div class="card-content">
+                <h3>Es Teh Manis</h3>
+                <div class="price">Rp 15.000</div>
+                <p>Sweet iced tea, a refreshing Indonesian favorite.</p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Jamu', 'Rp 20.000', 'Traditional Indonesian herbal drink made with turmeric, ginger, and other natural ingredients.', 'https://placehold.co/400x300/ffcc66/ffffff?text=Jamu')"
+            >
+              <img
+                src="https://placehold.co/400x300/ffcc66/ffffff?text=Jamu"
+                alt="Jamu"
+              />
+              <div class="card-content">
+                <h3>Jamu</h3>
+                <div class="price">Rp 20.000</div>
+                <p>
+                  Traditional Indonesian herbal drink made with turmeric,
+                  ginger, and other natural ingredients.
+                </p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Kopi Tubruk', 'Rp 18.000', 'Traditional Indonesian coffee brewed by pouring hot water directly over coarse grounds.', 'https://placehold.co/400x300/663300/ffffff?text=Kopi+Tubruk')"
+            >
+              <img
+                src="https://placehold.co/400x300/663300/ffffff?text=Kopi+Tubruk"
+                alt="Kopi Tubruk"
+              />
+              <div class="card-content">
+                <h3>Kopi Tubruk</h3>
+                <div class="price">Rp 18.000</div>
+                <p>
+                  Traditional Indonesian coffee brewed by pouring hot water
+                  directly over coarse grounds.
+                </p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Es Campur', 'Rp 25.000', 'Mixed iced dessert with fruits, jelly, syrup, and condensed milk.', 'https://placehold.co/400x300/ff99cc/ffffff?text=Es+Campur')"
+            >
+              <img
+                src="https://placehold.co/400x300/ff99cc/ffffff?text=Es+Campur"
+                alt="Es Campur"
+              />
+              <div class="card-content">
+                <h3>Es Campur</h3>
+                <div class="price">Rp 25.000</div>
+                <p>
+                  Mixed iced dessert with fruits, jelly, syrup, and condensed
+                  milk.
+                </p>
+              </div>
+            </div>
+            <div
+              class="menu-card"
+              onclick="openFoodModal('Wedang Jahe', 'Rp 18.000', 'Warm ginger drink with palm sugar, perfect for cooler evenings.', 'https://placehold.co/400x300/ff6600/ffffff?text=Wedang+Jahe')"
+            >
+              <img
+                src="https://placehold.co/400x300/ff6600/ffffff?text=Wedang+Jahe"
+                alt="Wedang Jahe"
+              />
+              <div class="card-content">
+                <h3>Wedang Jahe</h3>
+                <div class="price">Rp 18.000</div>
+                <p>
+                  Warm ginger drink with palm sugar, perfect for cooler
+                  evenings.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn next-btn" onclick="nextSlide('drink')">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Now Button -->
+    <button class="order-now-btn" onclick="openFoodModal()">ORDER NOW</button>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-image">
+            <img
+              src="https://placehold.co/600x400/8b4513/ffffff?text=Our+Kitchen"
+              alt="Our Kitchen"
+            />
+          </div>
+          <div class="about-text">
+            <h2>About Batik Kitchen</h2>
+            <p>
+              Founded in 2010, Batik Kitchen brings the authentic flavors of
+              Indonesia to your table. Our chefs are trained in traditional
+              Indonesian cooking techniques and use only the freshest
+              ingredients to create dishes that transport you to the streets of
+              Jakarta, Bali, and beyond.
+            </p>
+            <p>
+              Our menu features regional specialties from across the Indonesian
+              archipelago, from the spicy rendang of West Sumatra to the sweet
+              and savory satay of Java. Each dish is prepared with care and
+              attention to detail, honoring the rich culinary heritage of our
+              homeland.
+            </p>
+            <p>
+              At Batik Kitchen, we believe that food is more than just
+              sustenance—it's a celebration of culture, family, and community.
+              We invite you to join us for an unforgettable culinary journey
+              through Indonesia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-content">
+        <h3>Batik Kitchen</h3>
+        <p>Jalan Merdeka No. 123, Jakarta Pusat</p>
+        <p>Jakarta 10110, Indonesia</p>
+        <p class="phone">+62 21 1234 5678</p>
+      </div>
+    </footer>
+
+    <!-- Food Modal -->
+    <div class="modal" id="foodModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalFoodName">Food Name</h2>
+          <button class="close-modal" onclick="closeFoodModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="" alt="" class="modal-food-image" id="modalFoodImage" />
+          <div class="modal-food-price" id="modalFoodPrice">Rp 0</div>
+          <p class="modal-food-description" id="modalFoodDescription">
+            Food description goes here.
+          </p>
+          <div class="quantity-selector">
+            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+            <span class="quantity-display" id="quantityDisplay">1</span>
+            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+          </div>
+          <button class="add-to-cart-btn" onclick="openLocationPaymentModal()">
+            ADD TO CART & PROCEED TO CHECKOUT
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location & Payment Modal -->
+    <div class="location-payment-modal" id="locationPaymentModal">
+      <div class="location-payment-content">
+        <div class="location-payment-header">
+          Delivery Information & Payment
+        </div>
+        <div class="location-payment-body">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Enter your full name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="address">Delivery Address</label>
+            <input
+              type="text"
+              id="address"
+              placeholder="Enter your complete address"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="deliveryTime">Preferred Delivery Time</label>
+            <select id="deliveryTime">
+              <option value="">Select delivery time</option>
+              <option value="asap">As soon as possible</option>
+              <option value="30min">In 30 minutes</option>
+              <option value="1hour">In 1 hour</option>
+              <option value="2hours">In 2 hours</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Payment Method</label>
+            <div class="payment-methods">
+              <div class="payment-method" onclick="selectPaymentMethod(this)">
+                <i>💳</i>
+                <div>Credit Card</div>
+              </div>
+              <div class="payment-method" onclick="selectPaymentMethod(this)">
+                <i>📱</i>
+                <div>E-Wallet</div>
+              </div>
+              <div class="payment-method" onclick="selectPaymentMethod(this)">
+                <i>🏦</i>
+                <div>Bank Transfer</div>
+              </div>
+              <div class="payment-method" onclick="selectPaymentMethod(this)">
+                <i>💵</i>
+                <div>Cash on Delivery</div>
+              </div>
+            </div>
+          </div>
+          <button class="submit-order-btn" onclick="processPayment()">
+            CONFIRM ORDER
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Confirmation Modal -->
+    <div class="payment-modal" id="paymentModal">
+      <div class="payment-content">
+        <div class="payment-header">Order Confirmed!</div>
+        <div class="payment-body">
+          <div class="payment-success">✓</div>
+          <h3>Thank You For Your Order!</h3>
+          <p class="payment-message">
+            Your order has been successfully placed and will be prepared
+            shortly.
+          </p>
+          <div class="payment-details">
+            <p>
+              <strong>Order Number:</strong>
+              <span id="orderNumber">BK-2023-001</span>
+            </p>
+            <p>
+              <strong>Estimated Delivery:</strong>
+              <span id="deliveryTimeDisplay">30-45 minutes</span>
+            </p>
+            <p>
+              <strong>Total Amount:</strong> <span id="totalAmount">Rp 0</span>
+            </p>
+          </div>
+          <button class="close-payment-btn" onclick="closePaymentModal()">
+            CLOSE
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Carousel functionality
+      let foodSlideIndex = 0;
+      let drinkSlideIndex = 0;
+
+      function nextSlide(type) {
+        const carousel = document.querySelector(`.${type}-carousel`);
+        const cards = carousel.children;
+        const cardWidth = cards[0].offsetWidth + 20; // 20px for gap
+
+        if (type === "food") {
+          foodSlideIndex = (foodSlideIndex + 1) % cards.length;
+          carousel.style.transform = `translateX(-${
+            foodSlideIndex * cardWidth
+          }px)`;
+        } else {
+          drinkSlideIndex = (drinkSlideIndex + 1) % cards.length;
+          carousel.style.transform = `translateX(-${
+            drinkSlideIndex * cardWidth
+          }px)`;
+        }
+      }
+
+      function prevSlide(type) {
+        const carousel = document.querySelector(`.${type}-carousel`);
+        const cards = carousel.children;
+        const cardWidth = cards[0].offsetWidth + 20;
+
+        if (type === "food") {
+          foodSlideIndex = (foodSlideIndex - 1 + cards.length) % cards.length;
+          carousel.style.transform = `translateX(-${
+            foodSlideIndex * cardWidth
+          }px)`;
+        } else {
+          drinkSlideIndex = (drinkSlideIndex - 1 + cards.length) % cards.length;
+          carousel.style.transform = `translateX(-${
+            drinkSlideIndex * cardWidth
+          }px)`;
+        }
+      }
+
+      // Modal functionality
+      let currentQuantity = 1;
+      let currentFood = {
+        name: "Nasi Goreng",
+        price: "Rp 45.000",
+        description:
+          "Indonesian fried rice with sweet soy sauce, vegetables, and your choice of protein.",
+        image: "https://placehold.co/400x300/ff6b35/ffffff?text=Nasi+Goreng",
+      };
+
+      function openFoodModal(
+        name = "Nasi Goreng",
+        price = "Rp 45.000",
+        description = "Indonesian fried rice with sweet soy sauce, vegetables, and your choice of protein.",
+        image = "https://placehold.co/400x300/ff6b35/ffffff?text=Nasi+Goreng"
+      ) {
+        currentFood = { name, price, description, image };
+        document.getElementById("modalFoodName").textContent = name;
+        document.getElementById("modalFoodPrice").textContent = price;
+        document.getElementById("modalFoodDescription").textContent =
+          description;
+        document.getElementById("modalFoodImage").src = image;
+        document.getElementById("modalFoodImage").alt = name;
+        currentQuantity = 1;
+        document.getElementById("quantityDisplay").textContent =
+          currentQuantity;
+        document.getElementById("foodModal").style.display = "flex";
+      }
+
+      function closeFoodModal() {
+        document.getElementById("foodModal").style.display = "none";
+      }
+
+      function increaseQuantity() {
+        currentQuantity++;
+        document.getElementById("quantityDisplay").textContent =
+          currentQuantity;
+      }
+
+      function decreaseQuantity() {
+        if (currentQuantity > 1) {
+          currentQuantity--;
+          document.getElementById("quantityDisplay").textContent =
+            currentQuantity;
+        }
+      }
+
+      function selectPaymentMethod(element) {
+        // Remove selected class from all payment methods
+        const paymentMethods = document.querySelectorAll(".payment-method");
+        paymentMethods.forEach((method) => {
+          method.classList.remove("selected");
+        });
+
+        // Add selected class to clicked payment method
+        element.classList.add("selected");
+      }
+
+      function openLocationPaymentModal() {
+        document.getElementById("locationPaymentModal").style.display = "flex";
+      }
+
+      function processPayment() {
+        // Get form values
+        const fullName = document.getElementById("fullName").value;
+        const address = document.getElementById("address").value;
+        const phone = document.getElementById("phone").value;
+        const deliveryTime = document.getElementById("deliveryTime").value;
+
+        // Validate form
+        if (!fullName || !address || !phone) {
+          alert("Please fill in all required fields");
+          return;
+        }
+
+        // Check if payment method is selected
+        const selectedPayment = document.querySelector(
+          ".payment-method.selected"
+        );
+        if (!selectedPayment) {
+          alert("Please select a payment method");
+          return;
+        }
+
+        // Generate random order number
+        const orderNumber =
+          "BK-" +
+          new Date().getFullYear() +
+          "-" +
+          Math.floor(1000 + Math.random() * 9000);
+        document.getElementById("orderNumber").textContent = orderNumber;
+
+        // Set delivery time display
+        let deliveryTimeDisplay = "30-45 minutes";
+        if (deliveryTime === "30min") deliveryTimeDisplay = "30-45 minutes";
+        else if (deliveryTime === "1hour") deliveryTimeDisplay = "1-1.5 hours";
+        else if (deliveryTime === "2hours") deliveryTimeDisplay = "2-2.5 hours";
+        document.getElementById("deliveryTimeDisplay").textContent =
+          deliveryTimeDisplay;
+
+        // Calculate total amount
+        // Extract numeric value from price string (remove 'Rp ' and any dots)
+        let priceStr = currentFood.price.replace("Rp ", "").replace(/\./g, "");
+        let totalAmount = parseInt(priceStr) * currentQuantity;
+        // Format as Indonesian Rupiah
+        document.getElementById("totalAmount").textContent =
+          "Rp " + totalAmount.toLocaleString("id-ID");
+
+        // Hide location/payment modal and show payment confirmation
+        document.getElementById("locationPaymentModal").style.display = "none";
+        document.getElementById("paymentModal").style.display = "flex";
+      }
+
+      function closePaymentModal() {
+        document.getElementById("paymentModal").style.display = "none";
+      }
+
+      // Close modals when clicking outside
+      window.onclick = function (event) {
+        const foodModal = document.getElementById("foodModal");
+        const locationPaymentModal = document.getElementById(
+          "locationPaymentModal"
+        );
+        const paymentModal = document.getElementById("paymentModal");
+
+        if (event.target === foodModal) {
+          foodModal.style.display = "none";
+        }
+        if (event.target === locationPaymentModal) {
+          locationPaymentModal.style.display = "none";
+        }
+        if (event.target === paymentModal) {
+          paymentModal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
